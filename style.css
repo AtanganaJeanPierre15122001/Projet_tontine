@@ -1,0 +1,450 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    
+}
+.entete{
+    color: gray;
+    font-size: 20px;
+    padding-top: 25px;
+}
+input{
+     margin-left:50px;
+     border-radius: 15px;
+     background-color:rgb(255,236,178);
+     border-width: 0px;
+    
+    
+
+}
+.lab{
+    margin-left:px ;
+    
+}
+label{
+    margin-right:200px;
+    color:blue ;
+
+}
+
+
+nav{
+padding-left: 50px;
+padding-right: 15px;
+/*height: 100px;*/
+background-color: rgb(243,158,5);
+}
+#logo{
+font-size: xx-large;
+color: #000;
+font-weight: bold;
+
+}
+
+h1{
+    overflow: hidden;
+}
+ul li{
+    margin-left: 30px;
+}
+
+
+.logo img{
+    width: 250px;
+    position: fixed;
+    top: 0%;
+    left: 10%;
+}
+
+
+.partie1{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+   margin-top: 72px;
+    background-color: rgb(255,236,178);
+    padding-right: 2px;
+}
+.part{
+    margin-top: 95px;
+}
+
+
+
+/*.partie1 .paragraphe h1{
+    text-align: left;
+    color: black;
+    padding-top: 300px;
+    padding-left: 70px;
+    font-size: 50px;
+    margin-top: 30px;
+}
+
+.partie1 .paragraphe p{
+    margin: 40px;
+    text-align: left;
+    color: black;
+    padding-top: 0px;
+    padding-left: 35px;
+    font-weight:700;
+    background-color: rgb(255,236,178);
+}*/
+
+li a:hover{
+    font-weight: bold;
+    color: #000;
+    transition: 0.3 s;
+
+}
+
+/*.partie1 .imafond img{
+    
+    position:sticky;
+    margin-top: 200px;
+}*/
+
+.partie2{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -100px;
+    
+}
+
+.partie2 .paragraphe2 h1{
+    text-align: left;
+    color: black;
+    padding-top: 100px;
+    padding-left: 20px;
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+.partie2 .paragraphe2 .avantage{
+    margin: 20px;
+    text-align: left;
+    color: black;
+    padding-top: 20px;
+    padding-left: 20px;
+    font-weight:700;
+    background:#7f0af3b0 ;
+    border-style:groove;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+}
+
+.partie2 .paragraphe2 .avantage li{
+    list-style: inside;
+}
+
+.partie2 .paragraphe3 h1{
+    text-align: left;
+    color: black;
+    padding-top: 100px;
+    padding-left: 70px;
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+.partie2 .paragraphe3 p{
+    margin: 40px;
+    text-align: left;
+    color: black;
+    padding-top: 0px;
+    padding-left: 35px;
+    font-weight:700;
+}
+
+.partie2 .paragraphe3 .bouton{
+    margin-right: -100px;
+}
+
+.partie2 .paragraphe3 .bouton .btn1{
+    font-size: 1em;
+    color: #fff;
+    background: linear-gradient(#ff3300,#7f0af3b0);
+    padding: 10px 20px;
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    transition: 0.4s ease-in;
+    margin-left: 170px;
+    border-radius: 15px;
+    text-transform:uppercase;
+    position: absolute;
+}
+
+.partie2 .paragraphe3 .bouton .btn2{
+    font-size: 1em;
+    color: #fff;
+    background: linear-gradient(#ff3300,#7f0af3b0);
+    padding: 10px 20px;
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    transition: 0.4s ease-in;
+    margin-left: 450px;
+    border-radius: 15px;
+    text-transform: uppercase;
+}
+
+.partie2 .paragraphe3 .bouton .btn1:hover{
+    letter-spacing: 2px;
+}
+
+.partie2 .paragraphe3 .bouton .btn2:hover{
+    letter-spacing: 2px;
+}
+
+.titre h1{
+    text-align: center;
+    font-size: 45px;
+    margin-top: 60px;
+
+}
+
+.apropos p{
+    margin: 40px;
+    text-align: left;
+    color: black;
+    padding-top: 0px;
+    padding-left: 35px;
+    font-weight:700;  
+}
+
+.imagep{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 0px;
+}
+
+.imagep .box{
+    margin: 20px;
+    border: 20px;
+    background-color: #fb911f;
+    height: 250px;
+    
+}
+
+
+
+.imagep .box .imbox img{
+    position: relative;
+    top: 0;
+    left: 0;
+    /*width: 90%;
+    height: 225px;*/
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    background-color: #fb911f;
+}
+
+.imagep .box .text{
+    text-align: center;
+}
+
+.titre2 h1{
+    text-align: center;
+    font-size: 45px;
+    margin-top: 60px;
+
+}
+image{
+    height: 30px;
+    width: 30px;
+}
+
+.aide{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: azure;  
+    margin-left: 5px;
+}
+
+.aide .paragraphe_aide p{
+    margin: 40px;
+    text-align: left;
+    color: black;
+    margin-left: 30px;
+    padding-top: 0px;
+    padding-left: 35px;
+    font-weight:700;
+}
+
+.aide .ima_aide img{
+    
+    position:sticky;
+    margin-top: 200px;
+    width: 600px;
+    margin: 20px;
+    border: 20px solid lightblue;
+    box-shadow: 20px 15px 35px rgba(0,0,0, 0.8);
+}
+
+.aide .paragraphe_aide .inscription{
+    text-align: left;
+}
+
+.aide .paragraphe_aide .inscription .listeaide li{
+    list-style:inside ;
+}
+
+.temoignage{
+    background-size: contain;
+    background-color: white;
+}
+.te{
+
+    background-color:rgb(255,236,178); 
+    background-size: contain;
+}
+
+.temoignage .imagep{
+    display: flex;
+    margin-top: 40px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+   
+.temoignage .imagep .box{
+    width: 340px;
+    margin: 20px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 40px;
+    background-color:rgb(255,236,178); 
+}
+
+
+.temoignage .imagep .box .imbox{
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.im{
+
+    width: 150px;
+    height: 150px;
+    border-radius: 50px;
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+
+.temoignage .imagep .box .imbox img{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    object-fit: cover;
+    justify-content: center;
+    align-items: center;
+}
+
+.temoignage .imagep .box .text{
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+.temoignage .imagep .box .text h3{
+    color: #000;
+    margin-top: 20px;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.contact{
+    background-color: rgb(243,158,5);
+    background-size: cover ;
+    height:  350px;
+}
+
+.contact .text{
+    text-align: center;
+    font-style: italic;
+}
+
+.contact  .titre3 h1{
+    text-align: center;
+    font-size: 45px;
+    margin-top: 60px;
+}
+.contact .h1{
+    text-align: center;
+    font-size: 45px;
+    margin-top: 60px;
+}
+
+.t{
+    background-color:rgb(255,236,178); 
+    background-size: contain;
+    
+}
+
+.fonc img{
+    background-color: rgb(243,158,5);
+    height: 45px;
+    padding: 0.35em;
+    border-radius: 10px;
+}
+
+.btn{
+    background-color:  rgb(243,158,5);
+    margin-top: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: 0.4s ease-in;
+}
+
+.btn:hover{
+    letter-spacing: 2px;    
+}
+
+.float {
+    position: relative;
+  }
+  
+.float .floating{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ff3300;
+  }
+  
+
+
+
+    
+
+
+
+

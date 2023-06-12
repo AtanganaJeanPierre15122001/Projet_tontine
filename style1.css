@@ -1,0 +1,172 @@
+nav{
+    padding-left: 50px;
+    padding-right: 15px;
+    /*height: 100px;*/
+    background-color: rgb(243,158,5);
+    }
+
+#logo{
+    font-size: xx-large;
+    color: #000;
+    font-weight: bold;
+    
+    }
+li a:hover
+{
+    font-weight: bold;
+    color: #000;
+    transition: 0.3 s;
+    
+}
+
+.entete
+{
+    color: gray;
+    font-size: 20px;
+    padding-top: 25px;
+}
+
+
+.justify-content-around
+{
+    background-color: #F39E04;
+    position: fixed;
+    width: 100%;
+}
+
+.btn
+{
+    border-radius:10px;
+    color: white;
+    background-color: #f39f04a4;
+    
+   
+}
+
+.column0
+{
+    height: 100%;
+    width: 100%;
+}
+.column1
+{
+    background-color: #250200;
+    width: 25%;
+    
+}
+
+.containeur
+{
+    margin-left: 15%;
+
+}
+#rounded
+{
+    height: 10%;
+    margin-left: 22%;
+    padding-top: 5%;
+    
+}
+.color0
+{
+    color: white;
+    border-radius: 10px;
+    background-color: blue;
+    text-align: center;
+    margin-left: 25%;
+   
+}
+.color
+{
+    color: white;
+    border-radius: 10px;
+    background-color: blue;
+    text-align: center;
+    margin-left: 15px;
+   
+}
+.color1
+{
+    color: white;
+    border-radius: 10px;
+    background-color:#A42202;
+    text-align: center;
+    margin-left: 23%;
+}
+
+.image
+{
+    height: 30px;
+    color: white;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+   margin-left: 18px;
+    
+  }
+
+
+
+.name
+{
+    color: white;
+}
+.column2
+{
+    text-align: center;
+    
+    /*width: 75%;*/
+}
+.column3
+{
+    margin: 70px;
+    /*padding: 2px;*/
+    height: 180px;
+    width: 180px;
+    background-color:rgb(255,236,178);
+    
+}
+.head
+{
+    height: 10pxpx;
+}
+.minn
+{
+    height: 150px;
+    background-color: rgb(255,236,178);
+    
+}
+.fett 
+{
+    height:20px;
+    background-color:#F39E04;
+    
+}
+.column4
+{
+    margin: 70px;
+    height: 180px;
+    width: 180px;
+    background-color:rgb(255,236,178);
+}
+.column5
+{
+    margin: 70px;
+    height: 180px;
+    width: 180px;
+    /*padding: 5px;*/
+    background-color:#F39E04; 
+}
+.column6
+{
+    margin: 70px;
+    height: 180px;
+    width: 180px;
+    background-color: rgb(255,236,178);
+}
+    
+    

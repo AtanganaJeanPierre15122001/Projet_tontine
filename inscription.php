@@ -99,6 +99,11 @@ if(isset($_POST['submit']))
                                 'photo' => $tof
                                 
                             ));
+                            $enreg = $bdd->prepare("INSERT INTO fonction(libelle,idMembre) VALUES(:libelle,:idMembre)");
+                            $enreg->execute(array(
+                            'libelle' => "President",
+                            'idMembre' => $ident                                                      
+                            ));
                             $_SESSION['user']=$nom;
                             unset($_SESSION['form_data']);
                             header('Location: inscripsecretaire.php?reg_err=success');
@@ -118,16 +123,17 @@ if(isset($_POST['submit']))
                   {
                       header('Location: inscription.php?reg_err=ident_length');
                   }
-              }
-              else
-              {
-                  header('Location: inscription.php?reg_err=tof');
-              }  
-        }
-        else
-        {
-            header('Location: inscription.php?reg_err=remplir'); 
-        }
+          }
+          else
+          {
+              header('Location: inscription.php?reg_err=tof');
+          } 
+     
+      }
+      else
+      {
+          header('Location: inscription.php?reg_err=remplir'); 
+      }
 }
 
 
@@ -151,6 +157,10 @@ if(isset($_POST['submit']))
 </head>
 
 <body>
+
+ <div class="loader">
+        <img src="loader.gif" alt="Loader"> 
+  </div>
 
 
   <header>
@@ -269,7 +279,7 @@ if(isset($_POST['submit']))
         <br>
         <img id="imageAffichee">
         <p class="description">
-          Veuillez Saisir Vos Informations
+          Veuillez Saisir Vos Informations de <a onclick="alert('Vous etes chargé de controler le bon deroulement de la tontine et d\'accepter les requetes')" href="">President</a>
         </p><br>
         
           <div class="col-lg-10">
@@ -315,7 +325,7 @@ if(isset($_POST['submit']))
           </div>
 
           <button type="submit" name ="submit" class="btn btn-outline-dark" style="margin-top:15px ;margin-right: 60px ;">
-            CONNEXION
+            CONTINUER
           </button>
         </form>
 
@@ -335,35 +345,8 @@ if(isset($_POST['submit']))
 
 
 
-  <script>
-    function showImage() {
-      const input = document.getElementById('image');
-      const img = document.getElementById('imageAffichee');
-      const file = input.files[0];
-      const reader = new FileReader();
-
-      reader.onload = function (e) {
-        img.src = e.target.result;
-      };
-
-      reader.readAsDataURL(file);
-    }
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
+   <script src="./js/doc.js"></script>
 
 </body>
 

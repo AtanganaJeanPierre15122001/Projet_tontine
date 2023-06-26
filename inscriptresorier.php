@@ -99,40 +99,40 @@ if(isset($_POST['submit']))
                                 'photo' => $tof
                                 
                             ));
-                            $enreg = $bdd->prepare("INSERT INTO fonction(libelle,idMembre) VALUES(:libelle,:idMembre)");
+                            $enreg = $bdd->prepare("INSERT INTO fonction(codeFonction,libelle,idMembre) VALUES(:libelle,:idMembre)");
                             $enreg->execute(array(
-                            'libelle' => "Secretaire",
+                            'libelle' => "Tresorier",
                             'idMembre' => $ident                                                      
                             ));
                             $_SESSION['user']=$nom;
                             unset($_SESSION['form_data']);
-                            header('Location: inscriptresorier.php?reg_err=success');
+                            header('Location: admin_index.php?reg_err=success');
                         }
                         else
                         {
-                            header('Location: inscripsecretaire.php?reg_err=password');
+                            header('Location: inscriptresorier.php?reg_err=password');
                         }
                     }
                     else
                     {
-                        header('Location: inscripsecretaire.php?reg_err=already');
+                        header('Location: inscriptresorier.php?reg_err=already');
                     }
               
                   }
                   else
                   {
-                      header('Location: inscripsecretaire.php?reg_err=ident_length');
+                      header('Location: inscriptresorier.php?reg_err=ident_length');
                   }
           }
           else
           {
-              header('Location: inscripsecretaire.php?reg_err=tof');
+              header('Location: inscriptresorier.php?reg_err=tof');
           } 
      
       }
       else
       {
-          header('Location: inscripsecretaire.php?reg_err=remplir'); 
+          header('Location: inscriptresorier.php?reg_err=remplir'); 
       }
 }
 
@@ -185,8 +185,8 @@ if(isset($_POST['submit']))
                   style="height: 40px; width: 40px;" /><span class="entete">Gestion</span></a></li>
             <li><a class="nav-link" href="#"><img src="image/cash.png" alt="cash.png"
                   style="height: 40px; width: 40px;" /> <span class="entete">Money</span></a></li>
-            <li><button type="button" class="btn btn-outline-dark"
-                style="margin-top:15px ;margin-right: 60px ;">CONNEXION</button></li>
+            <li><a href="connect.php"><button type="button" class="btn btn-outline-dark"
+                style="margin-top:15px ;margin-right: 60px ;">CONNEXION</button></a></li>
             </li>
           </ul>
         </div>
@@ -266,7 +266,7 @@ if(isset($_POST['submit']))
                     }
                 }
                 ?>
-                <h1 style="text-align: center; ">Bienvenue President <div style="color: red; text-transform:uppercase;" ><?php echo $_SESSION['user']?></div></h1><br>
+                <h1 style="text-align: center; ">President <div style="color: red; text-transform:uppercase;" ><?php echo $_SESSION['user']?></div></h1><br>
         <form action="" method="post" enctype="multipart/form-data">
         <br> <span style="text-align: center;">
           <img class="im" type="file" id="imageAffichee" name="ima" src="./image/util.png" alt="">
@@ -281,7 +281,7 @@ if(isset($_POST['submit']))
         <br>
         <img id="imageAffichee">
         <p class="description">
-        Veuillez Saisir les Informations du <a onclick="alert('celui ci est chargé d\'inserer les membres dans la reuinion')" href="">Secretaire</a>
+        Veuillez Saisir les Informations du <a onclick="alert('celui ci est chargé de gerer les differentes requetes de depot d\'argent et pret')" href="">Tresorier</a> ensuite vous serez rediriger vers la page d'administration de votre tontine
         </p><br>
         
           <div class="col-lg-10">

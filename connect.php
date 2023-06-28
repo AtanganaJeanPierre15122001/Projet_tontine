@@ -121,7 +121,7 @@ if(isset($_POST['submit']))
 
     <div class="container-fluid">
       <nav class="navbar navbar-expand-md  navbar-dark fixed-top ">
-        <a class="navbar-brand text-uppercase fw-bold" id="logo" href="/gestion.html"> KOTIS.
+        <a class="navbar-brand text-uppercase fw-bold" id="logo" href="gestion.html"> KOTIS.
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

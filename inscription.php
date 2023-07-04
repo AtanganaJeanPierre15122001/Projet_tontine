@@ -26,7 +26,7 @@ if(isset($_POST['submit']))
 
 
   
-    if(!empty($_POST['IDmembre'])  AND !empty($_POST['Nom']) AND !empty($_POST['Prenom']) AND !empty($_POST['Prenom']) AND !empty($_POST['DateNaissance']) AND !empty($_POST['AnneeAdhe']) AND !empty($_POST['Sexe']) AND !empty($_POST['Télephone']) AND !empty($_POST['Email']) AND !empty($_POST['Password']) AND !empty($_POST['confirmPassword']) )
+    if(!empty($_POST['IDmembre'])  AND !empty($_POST['Nom']) AND !empty($_POST['Prenom']) AND !empty($_POST['Prenom']) AND !empty($_POST['DateNaissance']) AND !empty($_POST['AnneeAdhe']) AND !empty($_POST['Sexe']) AND !empty($_POST['Télephone']) AND !empty($_POST['Email']) AND !empty($_POST['Password']) AND !empty($_POST['confirmPassword']) AND !empty($_POST['id_reuinion']) AND !empty($_POST['But_et_regles']) AND !empty($_POST['Nom_reuinion']) AND !empty($_POST['Nb_max']) AND !empty($_POST['Montant_individuel']) AND !empty($_POST['jour_depart']) AND !empty($_POST['montant_ver']) )
     {   
         
         $ident = $_POST['IDmembre'];
@@ -40,6 +40,14 @@ if(isset($_POST['submit']))
         $tof = $_FILES['image'];
         $password = sha1($_POST['Password']);
         $password_retype = sha1($_POST['confirmPassword']);
+        $id_reuinion = $_POST['id_reuinion'];
+        $butr = $_POST['But_et_regles'];
+        $nom_reuinion= $_POST['Nom_reuinion'];
+        $nbMax= $_POST['Nb_max'];
+        $montind= $_POST['Montant_individuel'];
+        $jourdepart= $_POST['jour_depart'];
+        $montver= $_POST['montant_ver'];
+
         
         // $ident_length=strlen($ident);
 
@@ -85,26 +93,44 @@ if(isset($_POST['submit']))
                         if($password == $password_retype)
                         {
                             
-                            $enreg = $bdd->prepare("INSERT INTO membre(idMembre,nom,prenom,DateNaissance,anneeEntree,password,sexe,telephone1,email,photo) VALUES(:idMembre,:nom,:prenom,:DateNaissance,:anneeEntree,:password,:sexe,:telephone1,:email,:photo)");
+                            $enreg = $bdd->prepare("INSERT INTO reuinion(Id_reunion,But_et_regles,Nom_reuinion,Nb_max,Montant_individuel,jour_depart,montant_ver) VALUES(:Id_reunion,:But_et_regles,:Nom_reuinion,:Nb_max,:Montant_individuel,:jour_depart,:montant_ver)");
                             $enreg->execute(array(
+                                'Id_reunion' => $id_reuinion,
+                                'But_et_regles' => $butr,
+                                'Nom_reuinion' => $nom_reuinion,
+                                'Nb_max' => $nbMax,
+                                'Montant_individuel' => $montind,
+                                'jour_depart' => $jourdepart,
+                                'montant_ver' => $montver
+                            ));
+
+                            $enreg1 = $bdd->prepare("INSERT INTO membre(idMembre,nom,prenom,dateNais,anneeEntree,password,sexe,telephone1,email,photo,Id_reunion) VALUES(:idMembre,:nom,:prenom,:dateNais,:anneeEntree,:password,:sexe,:telephone1,:email,:photo,:Id_reunion)");
+                            $enreg1->execute(array(
                                 'idMembre' => $ident,
                                 'nom' => $nom,
                                 'prenom' => $prenom,
-                                'DateNaissance' => $date_nais,
+                                'dateNais' => $date_nais,
                                 'anneeEntree' => $annee_adh,
                                 'password' => $password,
                                 'sexe' => $sexe,
                                 'telephone1' => $tel,
                                 'email' => $email,
-                                'photo' => $tof
+                                'photo' => $tof,
+                                'Id_reunion' => $id_reuinion
                                 
                             ));
-                            $enreg = $bdd->prepare("INSERT INTO fonction(libelle,idMembre) VALUES(:libelle,:idMembre)");
-                            $enreg->execute(array(
+
+                            $enreg2 = $bdd->prepare("INSERT INTO fonction(codeFonction,libelle,idMembre) VALUES(:codeFonction,:libelle,:idMembre)");
+                            $enreg2->execute(array(
+                            'codeFonction' => 'Pre'.$ident,
                             'libelle' => "President",
-                            'idMembre' => $ident                                                      
+                            'idMembre' => $ident
+                                                                                  
                             ));
+
                             $_SESSION['user']=$nom;
+                            $_SESSION['idR']=$id_reuinion;
+                            $_SESSION['ident']=$ident;
                             unset($_SESSION['form_data']);
                             header('Location: inscripsecretaire.php?reg_err=success');
                         }
@@ -160,7 +186,7 @@ if(isset($_POST['submit']))
 
  <div class="loader">
         <img src="loader.gif" alt="Loader"> 
-  </div>
+  </div>  
 
 
   <header>
@@ -266,7 +292,7 @@ if(isset($_POST['submit']))
                     }
                 }
                 ?>
-        <form action="" method="post" enctype="multipart/form-data">
+        
         <br> <span style="text-align: center;">
           <img class="im" type="file" id="imageAffichee" name="ima" src="./image/util.png" alt="">
         </span>
@@ -322,7 +348,41 @@ if(isset($_POST['submit']))
             <label for="" class="col-sm-6 ">confirmation du mot de passe</label>
             <input type="password" class="col-sx-10" id="confirmPassword" value="" name="confirmPassword" placeholder=""><br>
             <br>
+          </div><br><br>
+          
+          <h1 style="text-align: center;">Veuillez enregistrer les informations de la reuinion </h1>
+          <br>
+          <div class="col-lg-10">
+            <label for="" class="col-sm-6">ID de la reuinion</label>
+            <input type="text" class="col-sx-10" id="id_reuinion" value="<?php //echo "$tel";?> "name="id_reuinion" placeholder=""><br> <br>
           </div>
+          <div class="col-lg-10">
+            <label for="" class="col-sm-6">But et regles</label>
+            <textarea  rows="5" class="col-sx-10" id="But_et_regles" name="But_et_regles"></textarea><br> <br>
+          </div>
+          <div class="col-lg-10">
+            <label for="" class="col-sm-6">Nom de la reuinion</label>
+            <input type="text" class="col-sx-10" id="Nom_reuinion" value="<?php //echo "$tel";?> "name="Nom_reuinion" placeholder=""><br> <br>
+          </div>
+          <div class="col-lg-10">
+            <label for="" class="col-sm-6">Nombre maximum de participant</label>
+            <input type="text" class="col-sx-10" id="Nb_max" value="<?php //echo "$tel";?> "name="Nb_max" placeholder=""><br> <br>
+          </div>
+          <div class="col-lg-10">
+            <label for="" class="col-sm-6">Montant individuel de la reuinion</label>
+            <input type="text" class="col-sx-10" id="Montant_individuel" value="<?php //echo "$tel";?> "name="Montant_individuel" placeholder=""><br> <br>
+          </div>
+          <div class="col-lg-10">
+            <label for="" class="col-sm-6">jour de debut de la reunion</label>
+            <input type="date" class="col-sx-10" id="jour_depart" value="<?php //echo "$tel";?> "name="jour_depart" placeholder=""><br> <br>
+          </div>
+          <div class="col-lg-10">
+            <label for="" class="col-sm-6">Montant de la commission</label>
+            <input type="text" class="col-sx-10" id="montant_ver" value="<?php //echo "$tel";?> "name="montant_ver" placeholder=""><br> <br>
+          </div>
+
+          
+          
 
           <button type="submit" name ="submit" class="btn btn-outline-dark" style="margin-top:15px ;margin-right: 60px ;">
             CONTINUER

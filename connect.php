@@ -184,18 +184,9 @@ if(isset($_POST['submit']))
     </div>
 
 
-
-
-
   </section>
 
-
-
-
-
-
   <script src="./js/doc.js"></script>
-
 
 </body>
 

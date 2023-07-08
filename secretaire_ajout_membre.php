@@ -1,32 +1,13 @@
+
 <?php
-
-require_once'config.php';
-
-
-
-
-// if (!isset($_SESSION['form_data'])) {
-//   $_SESSION['form_data'] = array(
-//       'IDmenbre' => '',
-//       'Nom' => '',
-//       'Prenom' => '',
-//       'DateNaissance' => '',
-//       'AnneeAdhe' => '',
-//       'Sexe' => '',
-//       'Télephone' => '',
-//       'Email' => '',
-//       'Password' => '',
-//       'confirmPassword' => ''
-//   );
-// }
-
+require_once 'config.php';
 
 if(isset($_POST['submit']))
 {
 
 
   
-    if(!empty($_POST['IDmembre'])  AND !empty($_POST['Nom']) AND !empty($_POST['Prenom']) AND !empty($_POST['Prenom']) AND !empty($_POST['DateNaissance']) AND !empty($_POST['AnneeAdhe']) AND !empty($_POST['Sexe']) AND !empty($_POST['Télephone']) AND !empty($_POST['Email']) AND !empty($_POST['Password']) AND !empty($_POST['confirmPassword']) AND !empty($_POST['id_reuinion']) AND !empty($_POST['But_et_regles']) AND !empty($_POST['Nom_reuinion']) AND !empty($_POST['Nb_max']) AND !empty($_POST['Montant_individuel']) AND !empty($_POST['jour_depart']) AND !empty($_POST['montant_ver']) )
+    if(!empty($_POST['IDmembre'])  AND !empty($_POST['Nom']) AND !empty($_POST['Prenom']) AND !empty($_POST['Prenom']) AND !empty($_POST['DateNaissance']) AND !empty($_POST['AnneeAdhe']) AND !empty($_POST['Sexe']) AND !empty($_POST['Télephone']) AND !empty($_POST['Email']) AND !empty($_POST['Password']) AND !empty($_POST['confirmPassword']) )
     {   
         
         $ident = $_POST['IDmembre'];
@@ -40,13 +21,13 @@ if(isset($_POST['submit']))
         $tof = $_FILES['image'];
         $password = sha1($_POST['Password']);
         $password_retype = sha1($_POST['confirmPassword']);
-        $id_reuinion = $_POST['id_reuinion'];
-        $butr = $_POST['But_et_regles'];
-        $nom_reuinion= $_POST['Nom_reuinion'];
-        $nbMax= $_POST['Nb_max'];
-        $montind= $_POST['Montant_individuel'];
-        $jourdepart= $_POST['jour_depart'];
-        $montver= $_POST['montant_ver'];
+        $id_reuinion = $_SESSION['idR'];
+        // $butr = $_POST['But_et_regles'];
+        // $nom_reuinion= $_POST['Nom_reuinion'];
+        // $nbMax= $_POST['Nb_max'];
+        // $montind= $_POST['Montant_individuel'];
+        // $jourdepart= $_POST['jour_depart'];
+        // $montver= $_POST['montant_ver'];
 
         
         // $ident_length=strlen($ident);
@@ -93,16 +74,16 @@ if(isset($_POST['submit']))
                         if($password == $password_retype)
                         {
                             
-                            $enreg = $bdd->prepare("INSERT INTO reuinion(Id_reunion,But_et_regles,Nom_reuinion,Nb_max,Montant_individuel,jour_depart,montant_ver) VALUES(:Id_reunion,:But_et_regles,:Nom_reuinion,:Nb_max,:Montant_individuel,:jour_depart,:montant_ver)");
-                            $enreg->execute(array(
-                                'Id_reunion' => $id_reuinion,
-                                'But_et_regles' => $butr,
-                                'Nom_reuinion' => $nom_reuinion,
-                                'Nb_max' => $nbMax,
-                                'Montant_individuel' => $montind,
-                                'jour_depart' => $jourdepart,
-                                'montant_ver' => $montver
-                            ));
+                            // $enreg = $bdd->prepare("INSERT INTO reuinion(Id_reunion,But_et_regles,Nom_reuinion,Nb_max,Montant_individuel,jour_depart,montant_ver) VALUES(:Id_reunion,:But_et_regles,:Nom_reuinion,:Nb_max,:Montant_individuel,:jour_depart,:montant_ver)");
+                            // $enreg->execute(array(
+                            //     'Id_reunion' => $id_reuinion,
+                            //     'But_et_regles' => $butr,
+                            //     'Nom_reuinion' => $nom_reuinion,
+                            //     'Nb_max' => $nbMax,
+                            //     'Montant_individuel' => $montind,
+                            //     'jour_depart' => $jourdepart,
+                            //     'montant_ver' => $montver
+                            // ));
 
                             $enreg1 = $bdd->prepare("INSERT INTO membre(idMembre,nom,prenom,dateNais,anneeEntree,password,sexe,telephone1,email,photo,Id_reunion) VALUES(:idMembre,:nom,:prenom,:dateNais,:anneeEntree,:password,:sexe,:telephone1,:email,:photo,:Id_reunion)");
                             $enreg1->execute(array(
@@ -122,45 +103,45 @@ if(isset($_POST['submit']))
 
                             $enreg2 = $bdd->prepare("INSERT INTO fonction(codeFonction,libelle,idMembre) VALUES(:codeFonction,:libelle,:idMembre)");
                             $enreg2->execute(array(
-                            'codeFonction' => 'Pre'.$ident,
-                            'libelle' => "President",
+                            'codeFonction' => 'Mem'.$ident,
+                            'libelle' => "Membre",
                             'idMembre' => $ident
                                                                                   
                             ));
 
-                            $_SESSION['user']=$nom;
-                            $_SESSION['idR']=$id_reuinion;
-                            $_SESSION['ident']=$ident;
-                            $_SESSION['montind']=$montind;
-                            $_SESSION['montver']=$montver;
+                            // $_SESSION['user']=$nom;
+                            // $_SESSION['idR']=$id_reuinion;
+                            // $_SESSION['ident']=$ident;
+                            // $_SESSION['montind']=$montind;
+                            // $_SESSION['montver']=$montver;
                             unset($_SESSION['form_data']);
-                            header('Location: inscripsecretaire.php?reg_err=success');
+                            header('Location: secretaire_ajout_membre.php?reg_err=success');
                         }
                         else
                         {
-                            header('Location: inscription.php?reg_err=password');
+                            header('Location: secretaire_ajout_membre.php?reg_err=password');
                         }
                     }
                     else
                     {
-                        header('Location: inscription.php?reg_err=already');
+                        header('Location: secretaire_ajout_membre.php?reg_err=already');
                     }
               
                   }
                   else
                   {
-                      header('Location: inscription.php?reg_err=ident_length');
+                      header('Location: secretaire_ajout_membre.php?reg_err=ident_length');
                   }
           }
           else
           {
-              header('Location: inscription.php?reg_err=tof');
+              header('Location: secretaire_ajout_membre.php?reg_err=tof');
           } 
      
       }
       else
       {
-          header('Location: inscription.php?reg_err=remplir'); 
+          header('Location: secretaire_ajout_membre.php?reg_err=remplir'); 
       }
 }
 
@@ -171,63 +152,125 @@ if(isset($_POST['submit']))
 
 
 
-<!DOCTYPE html>
+
+
+
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
-  <title>inscription</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Secretaire</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+    <link href="./assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;  
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        .yo {
+            margin-top: 25px;
+        }
+
+        .scrollto {
+            background-color: #ffc107;
+        }
+
+        .scrollto:hover {
+            background-color: #f3a005;
+        }
+
+        .act {
+            background-color: #ebd5ac;
+        }
+
+        .me-0 {
+            color: #1b1005;
+            font-weight: bold;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="./assets/css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style2.css">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 </head>
 
 <body>
 
- <div class="loader">
-        <img src="loader.gif" alt="Loader"> 
-  </div>  
-
-
-  <header>
+    <header class="navbar navbar-dark bg-warning sticky-top flex-md-nowrap p-0 shadow" style=" margin:top 0%;">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 text-center" href="gestion.html">KOTIS.</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="d-flex w-100 justify-content-center" style="padding: 1%; margin-top:0%;">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="#" class="btn btn-light" aria-current="page"><i class="bx bx-home"></i>Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="bx bx-user"></i>Features</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="bx bx-file-blank"></i>Pricing</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="bx bx-server"></i>About</a></li>
+                <li class="nav-item"><a href="#" class="btn btn-secondary">Sign out</a></li>
+            </ul>
+        </div>
+    </header>
 
     <div class="container-fluid">
-      <nav class="navbar navbar-expand-md  navbar-dark fixed-top ">
-        <a class="navbar-brand text-uppercase fw-bold" id="logo" href="gestion.html"> KOTIS.
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active"><a class="nav-link" href="#"><img src="image/Accueil.png" alt="Accueil.png"
-                  style="height: 40px; width: 40px;" /><span class="entete">
-                  Accueil</span></a></li>
-            <li><a class="nav-link" href="#fonc"><img src="image/Analytics.png" alt="Analytics.png"
-                  style="height: 40px; width: 40px;" /> <span class="entete">Fonctionnalite</span></a>
-            </li>
-            <li><a class="nav-link" href="#"><img src="image/Calculatrice.png" alt="Calculatrice.png"
-                  style="height: 40px; width: 40px;" /><span class="entete">Gestion</span></a></li>
-            <li><a class="nav-link" href="#"><img src="image/cash.png" alt="cash.png"
-                  style="height: 40px; width: 40px;" /> <span class="entete">Money</span></a></li>
-            <li><button type="button" class="btn btn-outline-dark"
-                style="margin-top:15px ;margin-right: 60px ;">CONNEXION</button></li>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </header>
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
 
+                <div class="profile">
+                    <img src="./assets/img/favicon.png" alt="" class="img-fluid rounded-circle">
+                    <h1 class="text-light"><a href="index.html"><?php echo $_SESSION['user']; ?></a></h1> 
+                    <div class="mt-3 text-center">
+                        <a href="#" class="btn btn-primary">Editer le profil</a>
+                    </div>
+                </div>
 
-  <section class="container-fluid">
-    <div class="row text-center">
-      <form class="for1" action="" method="post" enctype="multipart/form-data">
-        <h1 style="text-align: center;">CONNEXION</h1><br><br>
-        <?php 
+                <nav id="navbar" class="nav-menu navbar">
+                    <ul class="w-100 lol">
+                        <!-- <li><a href="./admin_index.php" class="nav-link scrollto text-light"><span>Repondre aux requetes</span></a></li> -->
+                        <li><a href="./secretaire_gestion.php" class="nav-link scrollto text-light "><span>Avoir la liste des <br> membres</span></a></li>
+                        <hr>
+                        <li><a href="" class="nav-link scrollto text-light act"><span>Ajouter des membres</span></a></li>
+                        <!-- <li><a href="./admin_etat_membre.php" class="nav-link scrollto text-light"><span>Consulter l'etat des <br> membres</span></a></li> -->
+                    </ul>
+                </nav><!-- .nav-menu -->
+
+                <!-- <div style="padding: 2%;">
+                    <a href="#" class="btn btn-primary w-100">Afficher la liste des membres</a>
+                </div> -->
+                <hr style="background-color: white; height: 6px;">
+                <div style="padding: 2%;">
+                    <a href="./deconnexion.php" class="btn btn-danger w-100">Deconnexion</a>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <?php 
                 if(isset($_GET['reg_err']))
                 {
                     $err = htmlspecialchars($_GET['reg_err']);
@@ -239,7 +282,7 @@ if(isset($_POST['submit']))
                         case 'success':
                         ?>
                             <div class="alert alert-success">
-                                <strong>Succès</strong> inscription réussie !
+                                <strong>Succès</strong> Nouveau etudiant enregistrer!
                             </div>
                         <?php
                         break;
@@ -294,21 +337,21 @@ if(isset($_POST['submit']))
                     }
                 }
                 ?>
-        
-        <br> <span style="text-align: center;">
-          <img class="im" type="file" id="imageAffichee" name="ima" src="./image/util.png" alt="">
-        </span>
+        <form class="for1" action="" method="post" enctype="multipart/form-data">
+            <br> <span style="text-align: center;">
+            <img class="im" type="file" id="imageAffichee" name="ima" src="./image/util.png" alt="">
+            </span>
         
 
-        <br>
-        <br>
+            <br>
+            <br>
 
         <input type="file" id="image" name="image" onchange="showImage()">
         <br>
         <img id="imageAffichee">
-        <p class="description">
+        <!-- <p class="description">
           Veuillez Saisir Vos Informations de <a onclick="alert('Vous etes chargé de controler le bon deroulement de la tontine et d\'accepter les requetes')" href="">President</a>
-        </p><br>
+        </p><br> -->
         
           <div class="col-lg-10">
             <label for="" class="col-lg-6">Id Membre</label>
@@ -352,36 +395,7 @@ if(isset($_POST['submit']))
             <br>
           </div><br><br>
           
-          <h1 style="text-align: center;">Veuillez enregistrer les informations de la reuinion </h1>
-          <br>
-          <div class="col-lg-10">
-            <label for="" class="col-sm-6">ID de la reuinion</label>
-            <input type="text" class="col-sx-10" id="id_reuinion" value="<?php //echo "$tel";?> "name="id_reuinion" placeholder=""><br> <br>
-          </div>
-          <div class="col-lg-10">
-            <label for="" class="col-sm-6">But et regles</label>
-            <textarea  rows="5" class="col-sx-10" id="But_et_regles" name="But_et_regles"></textarea><br> <br>
-          </div>
-          <div class="col-lg-10">
-            <label for="" class="col-sm-6">Nom de la reuinion</label>
-            <input type="text" class="col-sx-10" id="Nom_reuinion" value="<?php //echo "$tel";?> "name="Nom_reuinion" placeholder=""><br> <br>
-          </div>
-          <div class="col-lg-10">
-            <label for="" class="col-sm-6">Nombre maximum de participant</label>
-            <input type="text" class="col-sx-10" id="Nb_max" value="<?php //echo "$tel";?> "name="Nb_max" placeholder=""><br> <br>
-          </div>
-          <div class="col-lg-10">
-            <label for="" class="col-sm-6">Montant individuel de la reuinion</label>
-            <input type="text" class="col-sx-10" id="Montant_individuel" value="<?php //echo "$tel";?> "name="Montant_individuel" placeholder=""><br> <br>
-          </div>
-          <div class="col-lg-10">
-            <label for="" class="col-sm-6">jour de debut de la reunion</label>
-            <input type="date" class="col-sx-10" id="jour_depart" value="<?php //echo "$tel";?> "name="jour_depart" placeholder=""><br> <br>
-          </div>
-          <div class="col-lg-10">
-            <label for="" class="col-sm-6">Montant de la commission</label>
-            <input type="text" class="col-sx-10" id="montant_ver" value="<?php //echo "$tel";?> "name="montant_ver" placeholder=""><br> <br>
-          </div>
+          
 
           
           
@@ -391,25 +405,18 @@ if(isset($_POST['submit']))
           </button>
         </form>
 
-
+            </main>
+        </div>
     </div>
 
-    </div>
 
+    <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="./js/doc.js"></script>
+    <link rel="stylesheet" href="style.css">
 
-
-
-
-
-  </section>
-
-
-
-
-
-  
-   <script src="./js/doc.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+    <script src="./assets/js/dashboard.js"></script>
 </body>
 
 </html>

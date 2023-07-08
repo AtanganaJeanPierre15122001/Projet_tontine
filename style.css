@@ -18,7 +18,15 @@
 
 input{
      margin-left:10px;
-     border-radius: 10px;
+     border-radius: 50px;
+     background-color:rgb(227, 185, 31);
+     border-width: 0px;
+     size: 50px;
+}
+
+textarea{
+     margin-left:10px;
+     border-radius: 0px;
      background-color:rgb(227, 185, 31);
      border-width: 0px;
      size: 50px;

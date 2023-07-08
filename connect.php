@@ -13,6 +13,7 @@ if(isset($_POST['submit']))
         $secretaire = "Secretaire";
         $tresorier = "Tresorier";
         $membre = "Membre";
+
         
         
         $ident_length=strlen($ident);
@@ -40,16 +41,23 @@ if(isset($_POST['submit']))
                 $verifident5->execute(array($ident,$membre));
                 $identexist5 = $verifident5->rowCount();
 
+                $verifident5 = $bdd->prepare("SELECT * FROM membre WHERE idMembre = ? ");
+                $verifident5->execute(array($ident));
+                $identexist = $verifident5->rowCount();
+
 
                 if($identexist == 1)
+
+
+
                 {
                     
                     
-                    // $userinfo = $verifident->fetch();
-                    // $_SESSION['id_prof']=$userinfo['id_prof'];
-                    // $_SESSION['ident_prof']=$userinfo['ident_prof'];
-                    // $_SESSION['mdp']=$userinfo['mdp'];
-                    // $_SESSION['user']=$nom;
+                    $userinfo = $verifident5->fetch();
+                    $_SESSION['ident']=$ident;
+                    $_SESSION['idR']=$userinfo['Id_reunion'];
+                    $_SESSION['user']=$userinfo['nom'];
+                    $_SESSION['photo']=$userinfo['photo'];;
                     if($identexist2==1)
                     {
                       header('Location: admin_index.php?reg_err=success');
@@ -57,17 +65,17 @@ if(isset($_POST['submit']))
 
                     if($identexist3==1)
                     {
-                      header('Location: bulletin.php?reg_err=success');
+                      header('Location: tresorier_gestion.php?reg_err=success');
                     }
 
                     if($identexist4==1)
                     {
-                      header('Location: bulletin.php?reg_err=success');
+                      header('Location: secretaire_gestion.php?reg_err=success');
                     }
 
                     if($identexist5==1)
                     {
-                      header('Location: bulletin.php?reg_err=success');
+                      header('Location: membre_gestion.php?reg_err=success');
                     }
 
                     
@@ -76,22 +84,22 @@ if(isset($_POST['submit']))
                 }
                 else
                 {
-                    header('Location: connection2.php?reg_err=already');
+                    header('Location: connect.php?reg_err=already');
                 }
             }
             else
             {
-                header('Location: connection2.php?reg_err=ident');
+                header('Location: connect.php?reg_err=ident');
             }
         }
         else
         {
-            header('Location: connection2.php?reg_err=ident_length');
+            header('Location: connect.php?reg_err=ident_length');
         }
     }
     else
     {
-        header('Location: connection2.php?reg_err=remplir'); 
+        header('Location: connect.php?reg_err=remplir'); 
     }
 }
 
@@ -168,6 +176,10 @@ if(isset($_POST['submit']))
               <label for="inputPassword" class="col-sm-2 col-form-label">identifiant</label>
               <input type="password" class="col-sx-10" name="idMembre" id="idMembre" placeholder=""><br><br>
             </div>
+            <!-- <div class="col-lg-10">
+              <label for="inputPassword" class="col-sm-2 col-form-label">identifiant de la reuinion</label>
+              <input type="text" class="col-sx-10" name="idR" id="idR" placeholder=""><br><br>
+            </div> -->
             <div class="col-lg-10">
               <label for="inputPassword" class="col-sm-2 col-form-label">Mot de Passe</label>
               <input type="password" class="col-sx-10" name="password" id="password" placeholder=""><br> <br>

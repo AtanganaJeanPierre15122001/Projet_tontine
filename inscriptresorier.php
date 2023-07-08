@@ -85,28 +85,33 @@ if(isset($_POST['submit']))
                         if($password == $password_retype)
                         {
                             
-                            $enreg = $bdd->prepare("INSERT INTO membre(idMembre,nom,prenom,DateNaissance,anneeEntree,password,sexe,telephone1,email,photo) VALUES(:idMembre,:nom,:prenom,:DateNaissance,:anneeEntree,:password,:sexe,:telephone1,:email,:photo)");
-                            $enreg->execute(array(
-                                'idMembre' => $ident,
-                                'nom' => $nom,
-                                'prenom' => $prenom,
-                                'DateNaissance' => $date_nais,
-                                'anneeEntree' => $annee_adh,
-                                'password' => $password,
-                                'sexe' => $sexe,
-                                'telephone1' => $tel,
-                                'email' => $email,
-                                'photo' => $tof
+                              
+                          $enreg1 = $bdd->prepare("INSERT INTO membre(idMembre,nom,prenom,dateNais,anneeEntree,password,sexe,telephone1,email,photo,Id_reunion) VALUES(:idMembre,:nom,:prenom,:dateNais,:anneeEntree,:password,:sexe,:telephone1,:email,:photo,:Id_reunion)");
+                          $enreg1->execute(array(
+                              'idMembre' => $ident,
+                              'nom' => $nom,
+                              'prenom' => $prenom,
+                              'dateNais' => $date_nais,
+                              'anneeEntree' => $annee_adh,
+                              'password' => $password,
+                              'sexe' => $sexe,
+                              'telephone1' => $tel,
+                              'email' => $email,
+                              'photo' => $tof,
+                              'Id_reunion' => $_SESSION['idR']
+                          ));
                                 
-                            ));
-                            $enreg = $bdd->prepare("INSERT INTO fonction(codeFonction,libelle,idMembre) VALUES(:libelle,:idMembre)");
-                            $enreg->execute(array(
-                            'libelle' => "Tresorier",
-                            'idMembre' => $ident                                                      
-                            ));
-                            $_SESSION['user']=$nom;
+                           
+                          $enreg2 = $bdd->prepare("INSERT INTO fonction(codeFonction,libelle,idMembre) VALUES(:codeFonction,:libelle,:idMembre)");
+                          $enreg2->execute(array(
+                          'codeFonction' => 'Tre'.$ident,
+                          'libelle' => "Tresorier",
+                          'idMembre' => $ident                                                                               
+                          ));
+
+                            
                             unset($_SESSION['form_data']);
-                            header('Location: admin_index.php?reg_err=success');
+                            header('Location:admin_index.php?reg_err=success');
                         }
                         else
                         {

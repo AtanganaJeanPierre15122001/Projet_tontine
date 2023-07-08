@@ -108,7 +108,7 @@ if(isset($_POST['submit']))
                           'idMembre' => $ident                                                                               
                           ));
 
-                            $_SESSION['user']=$nom;
+                            
                             unset($_SESSION['form_data']);
                             header('Location:inscriptresorier.php?reg_err=success');
                         }

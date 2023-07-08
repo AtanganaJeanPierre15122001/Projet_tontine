@@ -2,7 +2,6 @@
 
 <?php
 require_once 'config.php';
-
 $idR=$_SESSION['idR'];
 $insert1 = $bdd->prepare("SELECT * FROM membre");
 $insert1->execute();
@@ -46,7 +45,7 @@ $insert6->execute();
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Doc</title>
+    <title>Membre</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
 
@@ -131,10 +130,11 @@ $insert6->execute();
   
         <nav id="navbar" class="nav-menu navbar">
           <ul class="w-100 lol">
-            <li><a href="./admin_index.php" class="nav-link scrollto text-light"><span>Repondre aux requetes</span></a></li>
-            <li><a href="#" class="nav-link scrollto text-light act"><span>Avoir la liste des <br> membres</span></a></li>
-            <hr>
-            <li><a href="./admin_caisse.php" class="nav-link scrollto text-light"><span>Consulter l'etat des <br> caisses</span></a></li>
+          <li><a href="membre_liste.php" class="nav-link scrollto text-light act"><span>Avoir la liste des <br> membres</span></a></li>
+                        <hr>
+                        <li><a href="./membre_cotise.php" class="nav-link scrollto text-light"><span>Cotiser</span></a></li>
+                        <hr>
+                        <li><a href="./membre_requete.php" class="nav-link scrollto text-light "><span>Effectuer une requete</span></a></li>
            
           </ul>
         </nav><!-- .nav-menu -->
@@ -144,7 +144,7 @@ $insert6->execute();
         </div>
         <hr style="background-color: white; height: 6px;">
         <div style="padding: 2%;">
-          <a href="./deconnexion.php" class="btn btn-danger w-100">Deconnexion</a>
+          <a href="#" class="btn btn-danger w-100">Deconnexion</a>
       </div>
     </nav>
 
@@ -177,7 +177,9 @@ $insert6->execute();
                             <img src="" alt="">
                         </div>
 
-                        
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-warning">Deconnexion</a>
+                        </div>
                         
                     </div>
                     <?php }?>

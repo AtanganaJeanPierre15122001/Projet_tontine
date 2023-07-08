@@ -1,14 +1,14 @@
 
 <?php
 require_once 'config.php';
-$verifident = $bdd->prepare("SELECT photo FROM membre WHERE idMembre = ?");
-$verifident->execute(array($_SESSION['ident']));
+// $verifident = $bdd->prepare("SELECT photo FROM membre WHERE idMembre = ?");
+// $verifident->execute(array($_SESSION['ident']));
 
-$row = $verifident->fetch(PDO::FETCH_ASSOC);
-$tof = $row['photo'];
+// $row = $verifident->fetch(PDO::FETCH_ASSOC);
+// $tof = $row['photo'];
 
-$imageData = base64_encode($tof);
-$src = 'data:image/jpg;base64,' . $imageData;
+// $imageData = base64_encode($tof);
+// $src = 'data:image/jpg;base64,' . $imageData;
 // echo '<img src="'.$src.'" alt="Photo">';
 
 // header('Content-Type: image/jpg');
@@ -201,7 +201,7 @@ $mc = $insert1->fetch();
 
         <div class="profile">
           <img src="./assets/img/favicon.png" alt="" class="img-fluid rounded-circle">
-          <h1 class="text-light"><a href="index.html">Alex Smith</a></h1>
+          <h1 class="text-light"><a href="index.html"><?php echo $_SESSION['user']; ?></a></h1>
           <div class="mt-3 text-center">
             <a href="#" class="btn btn-primary">Editer le profil</a>
           </div>
@@ -209,17 +209,17 @@ $mc = $insert1->fetch();
   
         <nav id="navbar" class="nav-menu navbar">
           <ul class="w-100 lol">
-            <li><a href="./admin_index.php" class="nav-link scrollto text-light"><span>Repondre aux requetes</span></a></li>
+            <!-- <li><a href="./admin_index.php" class="nav-link scrollto text-light"><span>Repondre aux requetes</span></a></li> -->
             
             <hr>
             <li><a href="#" class="nav-link scrollto text-light act"><span>Consulter l'etat des <br> caisses</span></a></li>
-            
+            <li><a href="./tresorier_gestion.php" class="nav-link scrollto text-light"><span>Consulter la liste des <br> membres</span></a></li>
           </ul>
         </nav><!-- .nav-menu -->
 
-          <div style="padding: 2%;">
-            <a href="./admin_liste_membre.php" class="btn btn-primary w-100">Afficher la liste des membres</a>
-        </div>
+          <!-- <div style="padding: 2%;">
+            <a href="#" class="btn btn-primary w-100">Afficher la liste des membres</a>
+        </div> -->
         <hr style="background-color: white; height: 6px;">
         <div style="padding: 2%;">
           <a href="./deconnexion.php" class="btn btn-danger w-100">Deconnexion</a>

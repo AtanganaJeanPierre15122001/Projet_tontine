@@ -132,15 +132,14 @@ $insert4->execute();
         <nav id="navbar" class="nav-menu navbar">
           <ul class="w-100 lol">
             <li><a href="#" class="nav-link scrollto act"><span>Repondre aux requetes</span></a></li>
-            <li><a href="./admin_liste_membre.php" class="nav-link scrollto text-light"><span>Avoir la liste des <br> membres</span></a></li>
+            
             <hr>
             <li><a href="./admin_caisse.php" class="nav-link scrollto text-light"><span>Consulter l'etat des <br> caisses</span></a></li>
-            <li><a href="./admin_etat_membre.php" class="nav-link scrollto text-light"><span>Consulter l'etat des <br> membres</span></a></li>
-          </ul>
+            
         </nav><!-- .nav-menu -->
 
         <div style="padding: 2%;">
-          <a href="#" class="btn btn-primary w-100">Afficher la liste des membres</a>
+          <a href="./admin_liste_membre.php" class="btn btn-primary w-100">Afficher la liste des membres</a>
         </div>
         <hr style="background-color: white; height: 6px;">
         <div style="padding: 2%;">
@@ -154,240 +153,38 @@ $insert4->execute();
         </div>
         <h2 class="text-center yo">03/11/17</h2>
         <hr>
-        <!-- <div class="table-responsive">
-        <table class="table table-striped table-sm" id="list">
-          <thead>
-            <tr>
-              <th scope="col">Requete</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="No">random</td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-dark btn-sm w-50" style="border-radius: 20px;">Approuver</button>
-                </form>
-              </td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-danger btn-sm w-50" style="border-radius: 20px;">Rejeter</button>
-                </form>
-              </td>
-            </tr>
-            <tr>
-              <td class="No">placeholder</td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-dark btn-sm w-50" style="border-radius: 20px;">Approuver</button>
-                </form>
-              </td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-danger btn-sm w-50" style="border-radius: 20px;">Rejeter</button>
-                </form>
-              </td>
-            </tr>
-            <tr>
-              <td class="No">data</td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-dark btn-sm w-50" style="border-radius: 20px;">Approuver</button>
-                </form>
-              </td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-danger btn-sm w-50" style="border-radius: 20px;">Rejeter</button>
-                </form>
-              </td>
-            </tr>
-            <tr>
-              <td class="No">random</td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-dark btn-sm w-50" style="border-radius: 20px;">Approuver</button>
-                </form>
-              </td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-danger btn-sm w-50" style="border-radius: 20px;">Rejeter</button>
-                </form>
-              </td>
-            </tr>
-          </tbody>
-        </table> 
-        
-      </div> -->
+
         <div class="container">
-          <div class="row justify-content-center"><?php while ($req = $insert4->fetch()) { $mot = $insert1->fetch();
+          <div class="row justify-content-center"><?php  while ($req = $insert4->fetch()) { 
+                                                  $mot = $insert1->fetch();
                                                   $sta = $insert2->fetch();
-                                                  $nom = $insert3->fetch();?>
+                                                  $nom = $insert3->fetch();
+                                                  if( $sta['STATUS'] = 'R'){?>
               <div class="col-lg-4 col-sm-6 mb-4">
-                <a class="px-4 py-5 bg-white shadow text-center d-block match-height">
+                <div class="px-4 py-5 bg-white shadow text-center d-block match-height">
                   <h3 class="mb-3 mt-0"> Membre: <?php {echo $nom['nom'];} ?></h3>
                   <p class="mb-0"> Motif :<?php echo $mot['Motif']; ?> </p>
-                  <p class="mb-0">Status :<?php echo $sta['STATUS']; ?> </p>
-                </a>
+                  <!-- <p class="mb-0">Status :<?php echo $sta['STATUS']; ?> </p> -->
+                  <form action="" method='post'>
+                  <input type='hidden' name='delete_id' value='$a1'>
+                  <button type='submit' name='delete_btn' class="btn btn-danger btn-sm w-50" style="border-radius: 20px;">Rejeter</button>
+                  <button type='submit' name='success_btn' class="btn btn-success btn-sm w-50" style="border-radius: 20px;">Accepter</button>
+                </form>
+          </div>
+                
 
               </div>
-            <?php } ?>
+            <?php }else{
+              ?><<?php
+            }} ?>
 
 
-            <!-- <div class="col-lg-4 col-sm-6 mb-4">
-              <a class="px-4 py-5 bg-white shadow text-center d-block match-height">
-                <h3 class="mb-3 mt-0">Requete 2</h3>
-                <p class="mb-0"> 	</p>
-              </a>
-            </div>
       
-      <div class="col-lg-4 col-sm-6 mb-4">
-              <a class="px-4 py-5 bg-white shadow text-center d-block match-height">
-                <h3 class="mb-3 mt-0">Requete 3</h3>
-                <p class="mb-0"> 	</p>
-              </a>
-            </div>
-      
-      <div class="col-lg-4 col-sm-6 mb-4">
-              <a class="px-4 py-5 bg-white shadow text-center d-block match-height">
-                <h3 class="mb-3 mt-0">Requete 4</h3>
-                <p class="mb-0"> 	</p>
-              </a>
-            </div> -->
 
           </div>
         </div>
 
-        <!-- <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-        Collapsible Group 1</a>
-      </h4>
-    </div>
-    <div id="collapse1" class="panel-collapse collapse in">
-      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-        Collapsible Group 2</a>
-      </h4>
-    </div>
-    <div id="collapse2" class="panel-collapse collapse">
-      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-        Collapsible Group 3</a>
-      </h4>
-    </div>
-    <div id="collapse3" class="panel-collapse collapse">
-      <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
-    </div>
-  </div> -->
 
-        <!-- <h2 class="text-center yo">07/11/17</h2>
-      <hr>
-      <div class="table-responsive">
-        <table class="table table-striped table-sm" id="list">
-          <thead>
-            <tr>
-              <th scope="col">Requete</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="No">random</td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-dark btn-sm w-50" style="border-radius: 20px;">Approuver</button>
-                </form>
-              </td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-danger btn-sm w-50" style="border-radius: 20px;">Rejeter</button>
-                </form>
-              </td>
-            </tr>
-            <tr>
-              <td class="No">placeholder</td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-dark btn-sm w-50" style="border-radius: 20px;">Approuver</button>
-                </form>
-              </td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-danger btn-sm w-50" style="border-radius: 20px;">Rejeter</button>
-                </form>
-              </td>
-            </tr>
-            <tr>
-              <td class="No">data</td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-dark btn-sm w-50" style="border-radius: 20px;">Approuver</button>
-                </form>
-              </td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-danger btn-sm w-50" style="border-radius: 20px;">Rejeter</button>
-                </form>
-              </td>
-            </tr>
-            <tr>
-              <td class="No">random</td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-dark btn-sm w-50" style="border-radius: 20px;">Approuver</button>
-                </form>
-              </td>
-              <td>
-                <form action="" method='post'>
-                  <input type='hidden' name='delete_id' value='$a1'>
-                  <button type='submit' name='delete_btn' class="btn btn-danger btn-sm w-50" style="border-radius: 20px;">Rejeter</button>
-                </form>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </main>
-  </div>
-</div>
 
 
     <!-- <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>

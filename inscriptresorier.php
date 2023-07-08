@@ -109,7 +109,7 @@ if(isset($_POST['submit']))
                           'idMembre' => $ident                                                                               
                           ));
 
-                            $_SESSION['user']=$nom;
+                            
                             unset($_SESSION['form_data']);
                             header('Location:admin_index.php?reg_err=success');
                         }
